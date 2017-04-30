@@ -13,14 +13,14 @@ O arquivo **package.json** é o ponto de partida de qualquer projeto NodeJS. Ele
 
 Uma seção interessante do **package.json**, é a **scripts**. Que será o foco desse post. Veremos como utilizá-la para criar alias para nossos comandos, assim como também fazer um melhor uso dessa funcionalidade.
 
-<img src="http://wbruno.com.br/wp-content/uploads/2015/11/package-json-1024x389.png" alt="package json" width="788" height="299" class="aligncenter size-large wp-image-3518" srcset="http://wbruno.com.br/wp-content/uploads/2015/11/package-json-1024x389.png 1024w, http://wbruno.com.br/wp-content/uploads/2015/11/package-json-300x114.png 300w, http://wbruno.com.br/wp-content/uploads/2015/11/package-json-788x299.png 788w, http://wbruno.com.br/wp-content/uploads/2015/11/package-json.png 1500w" sizes="(max-width: 788px) 100vw, 788px" />
-  
+<img src="/wp-content/uploads/2015/11/package-json-1024x389.png" alt="package json" width="788" height="299" class="aligncenter size-large wp-image-3518" srcset="/wp-content/uploads/2015/11/package-json-1024x389.png 1024w, /wp-content/uploads/2015/11/package-json-300x114.png 300w, /wp-content/uploads/2015/11/package-json-788x299.png 788w, /wp-content/uploads/2015/11/package-json.png 1500w" sizes="(max-width: 788px) 100vw, 788px" />
+
 <!--more-->
 
 ## scripts do package.json
 
 A seção scripts possui algumas tarefas padrões como: **start, test, install..**. ([documentação](https://docs.npmjs.com/misc/scripts)).
-  
+
 Após criar um package.json com ajuda do <var>$ npm init &#8211;yes</var>, a forma de uso é a seguinte:
 
 <pre>$ npm test
@@ -49,7 +49,7 @@ e irá executar o que tiver definido no json:
 &lt;/wbrunom></pre>
 
 No nosso caso, por enquanto é apenas um **echo**, e um **exit 1** para indicar um erro de que nenhum teste foi definido ainda.
-  
+
 Mas poderia ser a execução do **mocha**, ficando assim:
 
 <pre>"scripts": {
@@ -66,8 +66,8 @@ E todo script do package, pode ser antecedido por outro que contenha o prefixo *
 </pre>
 
 E executar apenas com <var>$ npm test</var>. Okay ?
-  
-Assim como para criar scripts personalizados, basta dar qualquer nome, e executar com 
+
+Assim como para criar scripts personalizados, basta dar qualquer nome, e executar com
 
 <pre>$ npm run qqcoisa</pre>
 
@@ -77,7 +77,7 @@ Assim como para criar scripts personalizados, basta dar qualquer nome, e executa
 </pre>
 
 E o **pre**qqcoisa continua valendo.
-  
+
 Pense que o scripts pode executar qualquer comando de terminal válido. O que você faria na linha de comando, em shell, ou invocando outro script nodejs, pode ficar simplificado, com um apelido no teu package.
 
 ## Complicando o package.json
@@ -162,9 +162,9 @@ esac
 </pre>
 
 Esse meu arquivo **start.sh**, possui alguns truquezinhos como:
-  
+
 -> Identificar se está rodando num Mac ou num Linux, para exportar o caminho certo até o instantclient do Oracle (desenvolvo em Mac, mas o Jenkins e as máquinas de produção, QA e Stage são Linux).
-  
+
 -> Receber um argumento para executar o job correto, que podem ser: **test-api, jshint, coverage, stg, qa, dev**, ou qualquer outra coisa que for a sua necessidade.
 
 A maior vantagem aqui, foi evitar aquela repetição de código no json, e simplificar essas execuções e a manutenção, ao delegar para um arquivo externo a responsabilidade de saber como executar cada uma das tarefas.
@@ -197,7 +197,7 @@ $ npm run test-api
 </pre>
 
 Muito mais sucinto e limpo, ne?!
-  
+
 E ai, o que achou ? já usava isso ? comece agora!
 
 ## links interessantes:
