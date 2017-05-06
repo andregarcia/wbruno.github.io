@@ -161,6 +161,9 @@ Resolvi começar um levantamento dos meus perfis e formas de contato que tenho e
   <li>
     <a href="https://www.crunchbase.com/person/william-moraes#/entity">https://www.crunchbase.com/person/william-moraes#/entity</a>
   </li>
+  <li>
+    <a href="https://stackshare.io/wbruno">https://stackshare.io/wbruno</a>
+  </li>
 </ul>
 
 **Gtalk**
