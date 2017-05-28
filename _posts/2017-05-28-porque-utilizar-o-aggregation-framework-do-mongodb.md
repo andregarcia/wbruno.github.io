@@ -50,7 +50,7 @@ class CartCount {
 O aggregation inteligente para contar o número de items é este:
 ``` json
 [
-  { "$match": { "_id": ? }, "organization": { "id": ? } },
+  { "$match": { "_id": ?, "organization": { "id": ? } },
   { "$project": { "_id": 1, "total": { "$size": "$items" } } }
 ]
 ```
