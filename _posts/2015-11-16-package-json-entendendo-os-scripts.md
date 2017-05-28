@@ -23,18 +23,20 @@ A seção scripts possui algumas tarefas padrões como: **start, test, install..
 
 Após criar um package.json com ajuda do <var>$ npm init &#8211;yes</var>, a forma de uso é a seguinte:
 
-<pre>$ npm test
+``` shell
+$ npm test
 
 > t@1.0.0 test /Users/wbruno/Sites/t
 > echo "Error: no test specified" && exit 1
 
 Error: no test specified
 npm ERR! Test failed.  See above for more details.
-</pre>
+```
 
 e irá executar o que tiver definido no json:
 
-<pre>{
+``` json
+{
   "name": "t",
   "version": "1.0.0",
   "description": "",
@@ -46,35 +48,43 @@ e irá executar o que tiver definido no json:
   "author": "William Bruno &lt;wbrunom @gmail.com> (http://wbruno.com.br)",
   "license": "ISC"
 }
-&lt;/wbrunom></pre>
+```
 
 No nosso caso, por enquanto é apenas um **echo**, e um **exit 1** para indicar um erro de que nenhum teste foi definido ainda.
 
 Mas poderia ser a execução do **mocha**, ficando assim:
 
-<pre>"scripts": {
-    "test": "_mocha test/node/*"
-  },
-</pre>
+``` json
+"scripts": {
+  "test": "_mocha test/node/*"
+},
+
+```
 
 E todo script do package, pode ser antecedido por outro que contenha o prefixo **pre**. Se eu quiser executar o jshint antes de executar o mocha, posso deixar o scripts assim:
 
-<pre>"scripts": {
-    "pretest": "jshint *"
-    "test": "_mocha test/node/*"
-  },
-</pre>
+``` json
+"scripts": {
+  "pretest": "jshint *"
+  "test": "_mocha test/node/*"
+},
+
+```
 
 E executar apenas com <var>$ npm test</var>. Okay ?
 
 Assim como para criar scripts personalizados, basta dar qualquer nome, e executar com
 
-<pre>$ npm run qqcoisa</pre>
+``` shell
+$ npm run qqcoisa
+```
 
-<pre>"scripts": {
-    "qqcoisa": "echo 'Qualquer coisa'"
-  },
-</pre>
+``` json
+"scripts": {
+  "qqcoisa": "echo 'Qualquer coisa'"
+},
+
+```
 
 E o **pre**qqcoisa continua valendo.
 
@@ -86,13 +96,15 @@ Se um dia você tiver que trabalhar com o Oracle no seu projeto NodeJS, você va
 
 O que pode levar o teu scripts do package ficar gigantesco:
 
-<pre>"scripts": {
-     "start": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=development && nodemon bin/www",
-     "qa": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=qa && nodemon bin/www",
-     "stg": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=stg && nodemon bin/www",
-     ...
-   }
-</pre>
+``` json
+"scripts": {
+  "start": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=development && nodemon bin/www",
+  "qa": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=qa && nodemon bin/www",
+  "stg": "export OCI_HOME=/opt/instantclient_11_2/ && export OCI_LIB_DIR=$OCI_HOME && export OCI_INC_DIR=$OCI_HOME/sdk/include && export OCI_VERSION=11 && export NLS_LANG=AMERICAN_AMERICA.UTF8 && export DYLD_LIBRARY_PATH=$OCI_HOME && export LD_LIBRARY_PATH=$OCI_HOME && export DEBUG=musashi:* && export NODE_ENV=stg && nodemon bin/www",
+  ...
+ }
+
+```
 
 Note que eu tenho uma repetição de **export**, pois no meu package eu posso escolher subir o projeto como desenvolvimento local (start), apontando para as configurações de QA ou de Stage (ambiente pré produção).
 
@@ -100,7 +112,8 @@ Note que eu tenho uma repetição de **export**, pois no meu package eu posso es
 
 Por isso, que é uma boa idéia criar um arquivo externo para abstrair esses comandos shell, ficando assim **scripts/start.sh**:
 
-<pre>#!/bin/bash
+``` shell
+#!/bin/bash
 
 case "$(uname -s)" in
   Darwin)
@@ -159,7 +172,8 @@ case "$1" in
     exit 1
   ;;
 esac
-</pre>
+
+```
 
 Esse meu arquivo **start.sh**, possui alguns truquezinhos como:
 
@@ -171,30 +185,36 @@ A maior vantagem aqui, foi evitar aquela repetição de código no json, e simpl
 
 Lembre-se de dar permissão de execução para esse arquivo:
 
-<pre>$ chmod +x scripts/start.sh </pre>
+``` shell
+$ chmod +x scripts/start.sh
+```
 
 E depois, melhore a legibilidade do teu package, apenas invocando o arquivo shell:
 
-<pre>"scripts": {
-    "start": "./scripts/start.sh dev",
-    "qa": "./scripts/start.sh qa",
-    "stg": "./scripts/start.sh stg",
+``` json
+"scripts": {
+  "start": "./scripts/start.sh dev",
+  "qa": "./scripts/start.sh qa",
+  "stg": "./scripts/start.sh stg",
 
-    "pretest-coverage": "./scripts/start.sh jshint",
-    "test-coverage": "./scripts/start.sh coverage",
-    "test": "npm run test-coverage",
+  "pretest-coverage": "./scripts/start.sh jshint",
+  "test-coverage": "./scripts/start.sh coverage",
+  "test": "npm run test-coverage",
 
-    "pretest-api": "jshint test/api/*",
-    "test-api": "./scripts/start.sh test-api"
-  },</pre>
+  "pretest-api": "jshint test/api/*",
+  "test-api": "./scripts/start.sh test-api"
+},
+```
 
-<pre>$ npm start
+``` shell
+$ npm start
 $ npm run qa
 $ npm run stg
 $ npm run test-coverage
 $ npm test
 $ npm run test-api
-</pre>
+
+```
 
 Muito mais sucinto e limpo, ne?!
 
