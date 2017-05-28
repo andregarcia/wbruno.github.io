@@ -10,7 +10,7 @@ categories:
   - MongoDB
 ---
 Atualmente estou trabalhando com Java/Groovy, numa plataforma toda feita em microsserviços.
-Notei um comportamento bem esquisito, no NewRelic em um endpoint específico da API de carrinho (checkout) do usuário.
+Notei um comportamento bem esquisito, no NewRelic em um endpoint específico da API de carrinho.
 
 <img src="/wp-content/uploads/2017/05/comportamento-esquisito.png" alt="Comportamento esquisito visto no NewRelic" width="911" height="655" class="aligncenter size-large" />
 
@@ -18,7 +18,7 @@ Cada marcação vertical indica que um deploy foi feito.
 
 Note que um pouco antes da marcação de 19 de Maio, o tempo médio da função **CartController.countItemsById()** (marcação marrom no gráfico), que é puramente código Java estava próximo dos 5 milissegundos, e depois foi subindo, subindo até quase 15 milissegundos, onde um novo deploy foi feito e o tempo baixou.
 
-Ou seja, logo após oumdeploy o tempo de resposta desse endpoint <u>/{cartId}/count/items</u> cai, subindo gradativamente até um novo deploy.
+Ou seja, logo após um deploy o tempo de resposta desse endpoint <u>/{cartId}/count/items</u> cai, subindo gradativamente até um novo deploy.
 
 
 O `service` que esse controller chama é este abaixo:
