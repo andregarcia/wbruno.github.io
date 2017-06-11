@@ -156,3 +156,14 @@ No fim das contas, não é nenhum sofrimento tão grande assim.. e 128GB são be
 [Conforme eu lembrar de mais alguma coisa, eu volto aqui e adiciono].
 
 <img src="/wp-content/uploads/2015/10/disk-1024x621.png" alt="disk" width="788" height="478" class="aligncenter size-large wp-image-3503" srcset="/wp-content/uploads/2015/10/disk-1024x621.png 1024w, /wp-content/uploads/2015/10/disk-300x182.png 300w, /wp-content/uploads/2015/10/disk-788x478.png 788w, /wp-content/uploads/2015/10/disk.png 1264w" sizes="(max-width: 788px) 100vw, 788px" />
+
+
+Update:
+
+Atualizei meu macOS para 10.13, e achei um menu que mostra o seguinte:
+
+<img src="/wp-content/uploads/2017/06/storage-mac.png" alt="" class="aligncenter size-large wp-image-3503" />
+
+podendo até deletar alguns arquivos diretamente por aqui.
+
+
